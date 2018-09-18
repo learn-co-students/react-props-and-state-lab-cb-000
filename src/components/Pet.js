@@ -2,7 +2,7 @@ import React from 'react'
 
 class Pet extends React.Component {
   render() {
-    const { id,name,type,age,weight,gender,isAdopted, onAdoptPet } = this.props.pet;
+    const { id,name,type,age,weight,gender,isAdopted } = this.props.pet;
     return (
       <div className="card">
         <div className="content">
@@ -21,7 +21,7 @@ class Pet extends React.Component {
         <div className="extra content">
           { isAdopted ?
           <button className="ui disabled button">Already adopted</button> :
-          <button className="ui primary button" onClick={(id) => onAdoptPet(id)}>Adopt pet</button> }
+          <button className="ui primary button" onClick={() => this.props.onAdoptPet(id)}>Adopt pet</button> }
         </div>
       </div>
     )

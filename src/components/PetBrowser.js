@@ -4,15 +4,12 @@ import Pet from './Pet'
 
 class PetBrowser extends React.Component {
   render() {
-    var pets = React.Children.map(this.props.pets, pet => {
-      return React.cloneElement(child, {onAdoptPet: this.props.onAdoptPet}, null)
-    }
-    return (
-      <div className="ui cards">
-        {pets}
-      </div>
-    )
+  const { pets, onAdoptPet } = this.props;
+  const petCards = pets.map(pet => <Pet pet={pet} key={pet.id} onAdoptPet={onAdoptPet} />);
+
+  return <div className="ui cards">{petCards}</div>;
+
   }
 }
 
-export default PetBrowser
+export default PetBrowser;
