@@ -18,7 +18,7 @@ class App extends React.Component {
   fetchPets = () => {
     let url = "/api/pets";
     if (this.state.filters.type !== "all") {
-      url = `/api/pets?type={this.state.filters.type}`;
+      url = `/api/pets?type=${this.state.filters.type}`;
     }
     fetch(url)
       .then(function(response) {
@@ -29,8 +29,14 @@ class App extends React.Component {
       });
   }
 
-  adoptPet = (id) => {
-
+  adoptPet = id => {
+    const pets = this.state.pets;
+    pets.forEach(function(pet) {
+      if (pet.id === id) {
+        pet.isAdopted = true;
+      }
+    });
+    this.setState({pets: pets});
   }
 
 
